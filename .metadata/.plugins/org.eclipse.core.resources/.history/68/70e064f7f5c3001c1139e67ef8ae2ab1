@@ -1,0 +1,11 @@
+package com.dxc.socialmedia.entity;
+
+import java.util.Optional;
+
+public class SecurityAuditorAware {
+	public Optional<String> getCurrentAuditor() {
+
+		// Just return a string representing the username
+		return Optional.ofNullable("testing").filter(s -> !s.isEmpty());
+	}
+}

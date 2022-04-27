@@ -1,0 +1,11 @@
+package com.dxc.socialmedia.services;
+
+
+@Component
+public class FileService {
+	
+
+
+   
+
+}

@@ -1,0 +1,32 @@
+package com.dxc.socialmedia.entity;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "files")
+public class Files extends Auditable<String> {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "file_id")
+	int fileId;
+//	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "data_id")
+	int dataId;
+	@Column(name = "location_path")
+	String pathLocation;
+	@Column(name = "is_available")
+	int isAvailable;
+	
+	
+	
+	
+
+}

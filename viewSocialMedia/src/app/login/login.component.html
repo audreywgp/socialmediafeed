@@ -1,0 +1,58 @@
+<div *ngIf="isShown" class="row justify-content-center" style="margin:150px">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="form-outline mb-4 form-group">
+                        <h6 align="center" *ngIf="msg.length>0" style="color:red">{{msg}}</h6>
+                        <h1 align="center">Login</h1>
+                    </div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4 form-group">
+                        <label class="form-label" for="usernameid">Username</label>
+                        <input type="text" #inputusername="ngModel" name="inputusername" [(ngModel)]="user.username"
+                            class="form-control" required />
+                        <div class="alert alert-danger" *ngIf=" inputusername.touched && !inputusername.valid">Please
+                            enter in your username</div>
+                        {{user.username}}
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4 form-group">
+                        <label class="form-label" for="passwordid">Password</label>
+                        <input type="password" #inputpassword="ngModel" name="inputpassword" [(ngModel)]="user.password"
+                            class="form-control" required />
+                        <div class="alert alert-danger" *ngIf=" inputpassword.touched && !inputpassword.valid">Please
+                            fill in enter password</div>
+                        {{user.password}}
+                        {{inputpassword.valid}}
+                    </div>
+
+                    <!-- 2 column grid layout for inline styling -->
+
+                    <!-- Submit button -->
+                    <!-- cannot submit if empty -->
+                    <div align="center">
+                        <button (click)="onLogin()" class="btn btn-primary btn-block mr-1"><span>Login</span></button>
+                        <a (click)="onSignUp()" class="btn btn-link">Sign up</a>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- <div *ngFor="let user of allUser">
+    {{user.username}}
+
+</div> -->

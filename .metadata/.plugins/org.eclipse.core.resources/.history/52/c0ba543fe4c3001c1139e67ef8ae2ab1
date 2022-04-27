@@ -1,0 +1,42 @@
+package com.dxc.socialmedia.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.dxc.socialmedia.controller.exception.UserNotFoundException;
+import com.dxc.socialmedia.entity.UserDetails;
+import com.dxc.socialmedia.repository.UserDetailsRepository;
+
+@Component
+public class UserServices {
+	@Autowired
+	private UserDetailsRepository detailsRepo;
+
+	public List<UserDetails> sendUserList() {
+
+		List<UserDetails> list = (List<UserDetails>) detailsRepo.findAll();
+		return list;
+
+	}
+
+	public UserDetails getUserDetails(int userId) {
+
+		UserDetails user = null;
+		user = detailsRepo.findById(userId);
+		return user;
+	}
+	
+	public UserDetails getUsername(String username) {
+		System.out.println("in this block");
+		return detailsRepo.findByUsername(username).orElseThrow(()->new UserNotFoundException("No user name found"));
+	}
+	
+//	public getUserData(String usernmae) {
+//		
+//		
+//	}
+
+}

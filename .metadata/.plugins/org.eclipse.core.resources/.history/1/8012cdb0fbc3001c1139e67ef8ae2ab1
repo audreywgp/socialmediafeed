@@ -1,0 +1,23 @@
+package com.dxc.socialmedia.entity;
+
+import java.util.Optional;
+
+import org.springframework.data.domain.AuditorAware;
+
+public class SecurityAuditorAware implements AuditorAware<String> {
+	
+	String Username;
+	
+	public String getUsername() {
+		return Username;
+	}
+
+	public void setUsername(String username) {
+		Username = username;
+	}
+
+	public Optional<String> getCurrentAuditor() {
+		// Just return a string representing the username
+		return Optional.ofNullable("testing").filter(data -> !data.isEmpty());
+	}
+}

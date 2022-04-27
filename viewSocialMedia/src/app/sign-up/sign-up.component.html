@@ -1,0 +1,64 @@
+<div class="row justify-content-center" style="margin:150px">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <form action="" #signupForm="ngForm">
+                    <div class="form-outline mb-4 form-group">
+                        <h6 align="center" *ngIf="msg.length>0" style="color:red">{{msg}}</h6>
+                        <h1 align="center">Sign up</h1>
+                    </div>
+                    <!-- Email input -->
+                    {{inputusername.valid}}
+                    <div class="form-outline mb-4 form-group">
+                        <label class="form-label" for="usernameid">Username:</label>
+                        <input type="text" name="inputusername" #inputusername="ngModel" class="form-control"
+                            [(ngModel)]="user.username" required>
+                        <div class="alert alert-danger" *ngIf=" inputusername.touched && !inputusername.valid">Please
+                            fill in your username</div>
+
+                        {{user.username}}
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4 form-group">
+                        <label class="form-label" for="passwordid">Password:</label>
+                        <input type="password" #inputpassword="ngModel" name="inputpassword" [(ngModel)]="user.password"
+                            class="form-control" required />
+                        <div class="alert alert-danger" *ngIf=" inputpassword.touched && !inputpassword.valid">please
+                            fill in your password</div>
+                        <p class="text-danger" *ngIf="user.password != inputCfmPassword">password not matching
+                        </p>
+
+                        <!-- <small *ngIf="inputpassword != inputCfmPassword" style="color:red">password not matching</small> -->
+                        {{user.password}}
+                    </div>
+
+                    <div class="form-outline mb-4 form-group">
+                        <label class="form-label" for="passwordid">Confirm Password:</label>
+                        <input type="password" name="inputCfmPassword" [(ngModel)]="inputCfmPassword"
+                            class="form-control" required />
+                        {{inputCfmPassword}}
+                    </div>
+
+
+
+                    <!-- Submit button -->
+                    <!-- cannot click sign up if empty -->
+                    <div align="center"><button [disabled]="inputCfmPassword!=inputCfmPassword" (click)="onSignUp();"
+                            class="btn btn-primary btn-block mb-4">Sign
+                            up</button></div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- <div class="form-group">
+      <input type="text" name="test" #test class="form-control" [(ngModel)]="user.username"required>
+      <label for="check" class="form-check-label">Yes, confirm all details are true</label>
+    </div> -->
+<!-- check: {{test.className}} -->

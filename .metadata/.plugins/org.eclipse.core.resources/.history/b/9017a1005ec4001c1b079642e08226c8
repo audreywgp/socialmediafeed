@@ -1,0 +1,29 @@
+package com.dxc.socialmedia.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.dxc.socialmedia.entity.UserData;
+import com.dxc.socialmedia.repository.UserDataRepository;
+
+@Component
+public class UserDataService {
+	@Autowired
+	private UserDataRepository dataRepo;
+	
+	public UserData sendUserData(int userId) {
+
+		UserData userData = dataRepo.findByUserId(userId);
+		return userData;
+
+	}
+	
+	public UserData insertData(UserData data) {
+		return dataRepo.save(data);
+		
+	}
+	
+
+}

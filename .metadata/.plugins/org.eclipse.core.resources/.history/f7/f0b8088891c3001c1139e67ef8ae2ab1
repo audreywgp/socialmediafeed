@@ -1,0 +1,5 @@
+package com.dxc.socialmedia.services;
+
+public class UserServices {
+
+}

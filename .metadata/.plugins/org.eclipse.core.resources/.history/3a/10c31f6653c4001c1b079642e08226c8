@@ -1,0 +1,96 @@
+package com.dxc.socialmedia.entity;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user_data")
+public class UserData extends Auditable<String>{
+	
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="data_id")
+	int dataId;
+	
+	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH })
+	@JoinColumn(name = "user_id")
+	UserDetails userId;
+	
+	@Column(name="caption")
+	String caption;
+	
+	@Column(name="post_type")
+	String postType;
+	
+	@Column(name="is_available")
+	int isAvailable;
+
+	public int getDataId() {
+		return dataId;
+	}
+
+	public void setDataId(int dataId) {
+		this.dataId = dataId;
+	}
+
+	public UserDetails getUserId() {
+		return userId;
+	}
+
+	public void setUserId(UserDetails userId) {
+		this.userId = userId;
+	}
+
+	public String getCaption() {
+		return caption;
+	}
+
+	public void setCaption(String caption) {
+		this.caption = caption;
+	}
+
+	public String getPostType() {
+		return postType;
+	}
+
+	public void setPostType(String postType) {
+		this.postType = postType;
+	}
+
+	public int getIsAvailable() {
+		return isAvailable;
+	}
+
+	public void setIsAvailable(int isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+
+	@Override
+	public String toString() {
+		return "UserData [dataId=" + dataId + ", userId=" + userId + ", caption=" + caption + ", postType=" + postType
+				+ ", isAvailable=" + isAvailable + "]";
+	}
+	
+	public UserData() {
+		
+	}
+
+	public UserData(UserDetails userId, String caption, String postType) {
+		super();
+		this.userId = userId;
+		this.caption = caption;
+		this.postType = postType;
+	}
+	
+	
+	
+	
+
+}

@@ -1,0 +1,27 @@
+package com.dxc.socialmedia.entity;
+
+import java.util.Optional;
+
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
+import org.springframework.data.domain.AuditorAware;
+
+public class SecurityAuditorAware implements AuditorAware<String> {
+	
+	private String username;
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	//createdby and updateby null no username
+	public Optional<String> getCurrentAuditor() {
+		// Just return a string representing the username
+		
+		Authentication auth = SecurityContext
+
+		return Optional.ofNullable(this.username).filter(data -> !data.isEmpty());
+	}
+}

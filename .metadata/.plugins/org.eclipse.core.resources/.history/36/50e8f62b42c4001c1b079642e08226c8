@@ -1,0 +1,28 @@
+package com.dxc.socialmedia;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import com.dxc.socialmedia.entity.SecurityAuditorAware;
+
+
+@Configuration
+@EnableJpaAuditing(auditorAwareRef="auditorAware")
+@SpringBootApplication
+public class SocialMediaFeedApplication {
+	
+	@Bean
+	public AuditorAware<String> auditorAware() {
+		return new SecurityAuditorAware();
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(SocialMediaFeedApplication.class, args);
+		System.out.println("running on spring boot");
+	}
+
+}

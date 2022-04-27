@@ -1,0 +1,68 @@
+package com.dxc.socialmedia.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dxc.socialmedia.entity.UserDetails;
+import com.dxc.socialmedia.services.UserServices;
+
+@RestController
+@CrossOrigin(origins="http://localhost:4200/")
+public class UserDetailsController {
+	@Autowired 
+	private UserServices services;
+	
+	
+	
+	@GetMapping("/user/all") // get post or delete mapping
+	public List<UserDetails> getBookList() {
+		return services.sendUserList();
+
+	}
+	
+	//test using username
+	@GetMapping("/user/{username}")
+	public String testing(@PathVariable("username") String username) {
+		Optional<UserDetails> userdata = services.getUsername(username);
+		String password= userdata.get().getPassword();
+		
+		
+		
+		return userdata.
+		
+	}
+	
+	
+	
+//	@GetMapping("/login") // get post or delete mapping
+//	public UserDetails getUserDetails(@PathVariable("userid") int userId) {
+//		return services.getUserDetails(userId);
+//
+//	}
+	
+//	@GetMapping("/user/{username}") // get post or delete mapping
+//	public void getUserDetails(@PathVariable("username") String username) {
+//		List<UserDetails> userlist = services.sendUserList();
+//		for(UserDetails user: userlist) {
+//			if(user.getUsername().equals(username)) {
+//				System.out.println(user);
+//			}
+//		}
+//		
+////		return services.getUserDetails(userId);
+//
+//	}
+//	
+	
+	
+	
+	
+
+}

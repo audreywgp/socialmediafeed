@@ -1,0 +1,27 @@
+package com.dxc.socialmedia.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user_data")
+public class UserData {
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="data_id")
+	int dataId;
+	@Column(name="user_id")
+	int userId;
+	@Column(name="caption")
+
+	String caption;
+	@Column(name="post_type")
+
+	String postType;
+	
+	
+
+}

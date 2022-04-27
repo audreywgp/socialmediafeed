@@ -1,0 +1,31 @@
+package com.dxc.socialmedia.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.dxc.socialmedia.entity.UserDetails;
+import com.dxc.socialmedia.repository.UserDetailsRepository;
+
+@Component
+public class UserServices {
+	@Autowired
+	private UserDetailsRepository detailsRepo;
+
+//	public List<UserDetails> sendUserList() {
+//
+//		List<UserDetails> list = (List<UserDetails>) detailsRepo.findAll();
+//		return list;
+//
+//	}
+
+//	public UserDetails getUserDetails(String username) {
+//
+//		UserDetails user = null;
+//		user = detailsRepo.findbyusername(username);
+//		return user;
+//	}
+
+}

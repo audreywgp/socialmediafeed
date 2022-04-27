@@ -1,0 +1,5 @@
+package com.dxc.socialmedia.controller.exception;
+
+public class UserNotFoundException {
+
+}

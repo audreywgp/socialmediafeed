@@ -1,0 +1,78 @@
+<div class=" modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Select Type Of Post</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-8 offset-2">
+                    <div class="d-flex  justify-content-between">
+                        <button type="button" class="btn btn-info w-100" (click)="openPopup()">Video</button>
+                        <span> </span>
+                        <button type="button" class="btn btn-warning w-100">Image</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closePopup()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="container">
+        <div class="row py-1 ">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="">
+                    <button type="button" class="btn btn-secondary btn-danger w-100" (click)="onVideoPost()">
+                        <strong style=" font-size:xx-large">Share Your Post</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="profile-feed" *ngFor="let data of userData;let index = index">
+    <div class="container">
+        <div class="row py-2 ">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="cardbox shadow-lg bg-white">
+                    <div class="cardbox-heading">
+                        <div class="cardbox-item">
+                            <div class="media-body ">
+                                <h6 class="m-0 d-flex justify-content-center">Posted by: {{usernameList[index]}}
+                                </h6>
+                                <small class="d-flex justify-content-center"><span><i
+                                            class="icon ion-md-pin d-flex justify-content-center"></i>
+                                        {{data.createdDate}}</span></small>
+                            </div>
+                            <div class="media d-flex justify-content-center embed-responsive embed-responsive-16by9">
+                                <video class="embed-responsive-item" width="400" controls [autoplay]="false"
+                                    [muted]="'muted'">
+                                    <source src="{{data.locationPath}}" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="media-body">
+                                <p><span class="d-flex justify-content-center"><i class="icon ion-md-time"></i> caption:
+                                        {{data.caption}}</span></p>
+                            </div>
+                            <div class="search d-flex justify-content-center ">
+                                <input placeholder="Write a comment" type="text">
+                                <button style="padding:10px"><i class="bi bi-camera"></i></button>
+                            </div>
+                        </div>
+                    </div><!-- cardbox-heading -->
+                </div><!-- cardbox -->
+
+            </div><!-- col-lg-6 -->
+            <div class="col-lg-3">
+                <div class="shadow-lg p-4 mb-2 bg-white author">
+                    <a href="https://www.geekyshadow.com/">Get technology knowledge from Geeky Shadow in hindi</a>
+                    <p>Geeky Shadow</p>
+                </div>
+            </div><!-- col-lg-3 -->
+
+        </div><!-- row -->
+    </div><!-- container -->
+</section>

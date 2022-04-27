@@ -1,0 +1,14 @@
+package com.dxc.socialmedia.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.dxc.socialmedia.entity.UserData;
+import com.dxc.socialmedia.entity.UserDetails;
+
+public interface UserDataRepository extends CrudRepository<UserData, Integer> {
+	
+	public UserData findById(int id);
+	public UserData findByUserId(int id);
+//	public UserData save(UserData data);
+
+}
