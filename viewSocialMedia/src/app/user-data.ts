@@ -5,6 +5,7 @@ export class UserData {
   postType: string | undefined;
   isAvailable: number | undefined;
   locationPath: string | undefined;
+  viewCount: number | undefined;
   createdBy: String | undefined;
   createdDate: Date | undefined;
   lastModifiedBy: String | undefined;

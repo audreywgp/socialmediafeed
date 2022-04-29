@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpHeaders,
+  HttpRequest,
+} from '@angular/common/http';
 import { UserData } from './user-data';
 
 @Injectable({
@@ -14,6 +19,16 @@ export class UserdataService {
   getUserdata(user_id: number | undefined): Observable<UserData[]> {
     return this.http.get<UserData[]>(`${this.baseUrl}/get/${user_id}`);
   }
+
+  // getAllUserdata() {
+  //   let authusername = 'ben';
+  //   let password = 'ben123';
+  //   const headers = new HttpHeaders({
+  //     // Basic <Base64 encoded username and password>
+  //     Authorization: 'Basic ' + btoa(`$${authusername}:${password}`),
+  //   });
+  //   return this.http.get<UserData[]>(`${this.baseUrl}/all`);
+  // }
 
   getAllUserdata(): Observable<UserData[]> {
     return this.http.get<UserData[]>(`${this.baseUrl}/all`);
@@ -44,6 +59,19 @@ export class UserdataService {
 
   addData(user: Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}/add`, user);
+  }
+  updateData(username: string, data: Object): Observable<Object> {
+    return this.http.post(
+      `${this.baseUrl}/${sessionStorage.getItem('username')}/update`,
+      data
+    );
+  }
+
+  deleteData(dataId: Object, username: string | null) {
+    return this.http.post(
+      `${this.baseUrl}/${sessionStorage.getItem('username')}/delete`,
+      dataId
+    );
   }
 
   // getAccountByUsername(username : string | undefined) : Observable<Account>{

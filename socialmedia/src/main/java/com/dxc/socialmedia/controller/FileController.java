@@ -45,7 +45,7 @@ public class FileController {
 	            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
 	        }
 			String uploadedFile = storageService.save(file);
-			message = "Uploaded the file successfully: " + uploadedFile;
+			message = "Uploaded the file successfully:-@" + uploadedFile;
 			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
 		} catch (Exception e) {
 			// file exist

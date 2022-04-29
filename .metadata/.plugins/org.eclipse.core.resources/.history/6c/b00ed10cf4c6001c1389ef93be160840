@@ -1,0 +1,47 @@
+package com.dxc.socialmedia.entity;
+
+import java.util.Optional;
+
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
+
+
+public class SecurityAuditorAware implements AuditorAware<String> {
+	
+	private String username;
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	//createdby and updateby null no username
+	public Optional<String> getCurrentAuditor() {
+		// Just return a string representing the username
+//		Authentication authentication = SecurityContextHolder.getContext()
+//															.getAuthentication();
+//
+//		if (authentication == null || !authentication.isAuthenticated()) {
+//			return null;
+//		}
+
+//		return  ((SecurityAuditorAware) authentication.getPrincipal()).getUsername();
+//		return Optional.ofNullable(((SecurityAuditorAware) authentication.getPrincip)).getUsername()).filter(data -> !data.isEmpty());
+//		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if (username != null) {
+//            return Optional.of(username);
+//        }
+//		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+
+		return Optional.ofNullable(name).filter(data -> !data.isEmpty());
+	}
+}
+
+

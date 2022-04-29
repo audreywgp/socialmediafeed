@@ -35,6 +35,9 @@ public class UserData extends Auditable<String> {
 	@Column(name = "location_path")
 	String locationPath;
 
+	@Column(name = "view_count")
+	String viewCount;
+
 	public int getDataId() {
 		return dataId;
 	}
@@ -81,6 +84,14 @@ public class UserData extends Auditable<String> {
 
 	public void setLocationPath(String locationPath) {
 		this.locationPath = locationPath;
+	}
+
+	public String getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(String viewCount) {
+		this.viewCount = viewCount;
 	}
 
 	public UserData(int userId, String caption, String postType, String locationPath) {

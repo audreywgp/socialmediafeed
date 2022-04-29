@@ -1,0 +1,26 @@
+package com.dxc.socialmedia.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import com.dxc.socialmedia.entity.MyDetails;
+import com.dxc.socialmedia.entity.TableUserDetails;
+import com.dxc.socialmedia.repository.UserDetailsRepository;
+
+
+public class MyDetailService implements UserDetailsService {
+
+	@Autowired
+	private UserDetailsRepository userDetailsrepo;
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		TableUserDetails user = userDetailsrepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No user name found"));
+		System.out.println(user+"found in mydetails service");
+		return new MyDetails(user);
+	}
+
+}

@@ -3,12 +3,14 @@ package com.dxc.socialmedia.repository;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import com.dxc.socialmedia.entity.UserDetails;
+import com.dxc.socialmedia.entity.TableUserDetails;
 
-public interface UserDetailsRepository extends CrudRepository<UserDetails, Integer> {
+@Repository
+public interface UserDetailsRepository extends CrudRepository<TableUserDetails, Integer> {
 	
-	public UserDetails findById(int id);
-	public Optional<UserDetails> findByUsername(String username);
+	public TableUserDetails findById(int id);
+	public Optional<TableUserDetails> findByUsername(String username);
 
 }

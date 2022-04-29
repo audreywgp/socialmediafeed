@@ -17,8 +17,9 @@ export class UploadFileComponent implements OnInit {
   fileInfos?: Observable<any>;
   dataObj = {};
   filename: string | undefined;
-  caption: string | undefined;
+  caption: string = '';
   username = sessionStorage.getItem('username');
+  maxtext = 10;
 
   constructor(
     private userDataService: UserdataService,
@@ -42,16 +43,16 @@ export class UploadFileComponent implements OnInit {
         this.currentFile = file;
         this.userDataService.upload(this.currentFile).subscribe(
           (event: any) => {
+            console.log(event.body);
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round((100 * event.loaded) / event.total);
             } else if (event instanceof HttpResponse) {
               this.message = event.body.message;
               this.fileInfos = this.userDataService.getFiles(); // get all files
-              // this.fileInfos = this.userDataService.getUploadFile(file.name);
               this.filename = file.name;
-              // sessionStorage.setItem('filename', file.name);
-              console.log('event:' + event.type);
-              event.type;
+              console.log('event:' + event);
+              const split = event.body.message.split(':-@');
+              this.filename = split[1];
               this.addUserData();
             }
           },
@@ -75,12 +76,16 @@ export class UploadFileComponent implements OnInit {
     this.dataObj = {
       userId: parseInt(sessionStorage.getItem('userId')!),
       caption: this.caption,
-      postType: sessionStorage.getItem('postType'),
+      // postType: sessionStorage.getItem('postType'),
+      postType: 'video',
       locationPath: this.filename,
     };
+
     this.userDataService.addData(this.dataObj).subscribe((send) => {
-      this.router.navigate(['user', sessionStorage.getItem('username')]);
-      console.log('adding data');
+      this.caption = '';
+      this.selectedFiles = undefined;
+      this.currentFile = undefined;
+      this.fileInfos = undefined;
     });
   }
 }

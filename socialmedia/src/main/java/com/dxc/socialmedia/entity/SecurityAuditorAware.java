@@ -3,6 +3,8 @@ package com.dxc.socialmedia.entity;
 import java.util.Optional;
 
 import org.springframework.data.domain.AuditorAware;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -20,18 +22,15 @@ public class SecurityAuditorAware implements AuditorAware<String> {
 	
 	//createdby and updateby null no username
 	public Optional<String> getCurrentAuditor() {
-		// Just return a string representing the username
-//		Authentication authentication = SecurityContextHolder.getContext()
-//															.getAuthentication();
-//
-//		if (authentication == null || !authentication.isAuthenticated()) {
-//			return null;
-//		}
 
-//		return  ((SecurityAuditorAware) authentication.getPrincipal()).getUsername();
-//		return Optional.ofNullable(((SecurityAuditorAware) authentication.getPrincip)).getUsername()).filter(data -> !data.isEmpty());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // auth now is annoymous @ web config
+		if(name.equals("anonymousUser"))
+		{
+			name="user";
+		}
 
-		return Optional.ofNullable(this.username).filter(data -> !data.isEmpty());
+		return Optional.ofNullable(name).filter(data -> !data.isEmpty());
 	}
 }
 

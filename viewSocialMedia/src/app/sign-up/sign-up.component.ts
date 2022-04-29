@@ -40,6 +40,7 @@ export class SignUpComponent implements OnInit {
           this.msg = 'password not matching';
         } else {
           this.userObj = {
+            name: this.user.name,
             username: this.user.username,
             password: this.user.password,
             role: 'user',

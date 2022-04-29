@@ -1,0 +1,16 @@
+package com.dxc.socialmedia.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.dxc.socialmedia.entity.UserDetails;
+
+@Repository
+public interface UserDetailsRepository extends CrudRepository<UserDetails, Integer> {
+	
+	public UserDetails findById(int id);
+	public Optional<UserDetails> findByUsername(String username);
+
+}

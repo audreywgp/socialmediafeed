@@ -1,0 +1,59 @@
+package com.dxc.socialmedia.entity;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class MyDetails implements UserDetails {
+	
+	@Autowired
+	private TableUserDetails user;
+	
+	public MyDetails(TableUserDetails user) {
+        super();
+        this.user = user;
+    }
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		System.out.println("mydetails collection");
+		return Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
+	}
+
+	@Override
+	public String getPassword() {
+		System.out.println("mydetails");
+		return user.getPassword();
+	}
+
+	@Override
+	public String getUsername() {
+		return user.getUsername();
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+}

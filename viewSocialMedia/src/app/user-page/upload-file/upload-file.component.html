@@ -16,12 +16,14 @@
             <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                 <div class="form-group">
                     <label class="sr-only" for="message" class="font-weight-bold"></label>
+                    <span class="label label-default">max character: {{caption.length}}/{{maxtext}}</span>
                     <textarea class="form-control" id="message" rows="3" class="form-control" [(ngModel)]="caption"
-                        placeholder="What are your mind, @{{username}}?"></textarea>
+                        placeholder="What are your mind, @{{username}}?" [maxlength]="maxtext"></textarea>
+
                 </div>
             </div>
         </div>
-        <div class="btn-toolbar justify-content-end">
+        <div class="btn-toolbar justify-content-between">
             <div class="btn-group">
                 <label class="btn btn-default p-0  btn-md">
                     <input type="file" (change)="selectFile($event)" />
@@ -33,12 +35,19 @@
             </div>
         </div>
         <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+        <!-- <div *ngIf="currentFile" class="progress my-3">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{ width: progress + '%' }">
+                {{ progress }}%
+            </div>
+        </div> -->
         <!--share button -->
     </div>
 </div>
 
 
-<hr>
+<!-- <hr> -->
 
 
 <!-- <div class="d-flex justify-content-center">
@@ -64,16 +73,16 @@
 </div> -->
 
 <!-- <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div> -->
-<div class="card mt-3">
+<!-- <div class="card mt-3">
     <div class="card-header">List of Files</div>
     <ul class="list-group list-group-flush" *ngFor="let file of fileInfos | async">
         <li class="list-group-item">
-            <!-- <a href="{{ file.url }}">{{ file.name }}</a>
-            {{file.url }} -->
+            <a href="{{ file.url }}">{{ file.name }}</a>
+            {{file.url }}
             <video class="embed-responsive-item" width="400" controls [autoplay]="false" [muted]="'muted'">
                 <source src="assets\videos\{{file.name}}" type="video/mp4">
             </video>
-            <!-- <img src="assets\videos\{{file.name}}" height="100px" width="100%" alt=""> -->
+            <img src="assets\videos\{{file.name}}" height="100px" width="100%" alt="">
         </li>
     </ul>
-</div>
+</div> -->

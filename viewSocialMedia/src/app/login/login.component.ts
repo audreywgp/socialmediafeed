@@ -23,24 +23,33 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     // this.inputusername = this.route.snapshot.params['inputusername']
     // this.inputpassword = this.route.snapshot.params['inputpassword']
+    if (sessionStorage.getItem('username')?.length) {
+      sessionStorage.clear();
+    }
   }
 
   // if cannot login, username reset/ password reset
   onLogin() {
+    sessionStorage.clear();
     this.userdetailsService.getUser(this.user.username).subscribe(
       (data) => {
-        if (data.password === this.user.password) {
+        if (data) {
           console.log('login');
+          console.log(sessionStorage.getItem('username'));
           this.user = data;
-          this.mysession = sessionStorage;
+          this.mysession = sessionStorage.setItem('role', data.role!);
           this.mysession = sessionStorage.setItem('username', data.username!);
+          this.mysession = sessionStorage.setItem('name', data.name!);
           this.mysession = sessionStorage.setItem(
             'userId',
             data.userId?.toString()!
           );
-          this.userdetailsService.sendUserId(data.userId!);
-          this.userdetailsService.sendUsername(data.username!);
-          if (data.role?.toLowerCase() === 'user') {
+          // this.userdetailsService.sendUserId(data.userId!);
+          // this.userdetailsService.sendUsername(data.username!);
+          if (
+            data.role?.toLowerCase() === 'user' ||
+            data.role?.toLowerCase() === 'admin'
+          ) {
             this.goUserpage();
           } else {
             console.log('you are admin');
